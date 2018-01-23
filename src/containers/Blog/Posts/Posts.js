@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import Post from '../../../components/Post/Post';
+import {Route} from 'react-router-dom';
 import './Posts.css';
+import FullPost from '../FullPost/FullPost';
 
 // import Axios from 'axios';
 import Axios from '../../../Axios'; // from instance
@@ -17,7 +19,7 @@ class Posts extends Component {
     // }
 
     postClickHandler = (id) => {
-        this.props.history.push({pathname: '/' + id});
+        this.props.history.push({pathname: '/posts/' + id});
     }
 
     componentDidMount () {
@@ -57,9 +59,16 @@ class Posts extends Component {
             });
 
         return (
-            <section className="Posts">
-                {posts}
-            </section>
+            <div>
+                <section className="Posts">
+                    {posts}
+                </section>
+                <Route
+                    path={this.props.match.url + '/:id'}
+                    component={FullPost}
+                    exact
+                />
+            </div>
         );
     }
 }

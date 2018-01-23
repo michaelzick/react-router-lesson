@@ -13,12 +13,25 @@ class Blog extends Component {
                 <header>
                     <nav>
                         <ul>
-                            <li><NavLink to='/'>Home</NavLink></li>
-                            <li><NavLink to={{
-                                pathname: '/new-post',
-                                hash: '#submit',
-                                search: '?quick-submit=true'
-                            }}>New Post</NavLink></li>
+                            <li>
+                                <NavLink
+                                    exact
+                                    to='/'
+                                    activeClassName='blog-active'>
+                                    Home
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    activeClassName='blog-active'
+                                    to={{
+                                        pathname: '/new-post',
+                                        hash: '#submit',
+                                        search: '?quick-submit=true'
+                                    }}>
+                                    New Post
+                                </NavLink>
+                            </li>
                         </ul>
                     </nav>
                 </header>

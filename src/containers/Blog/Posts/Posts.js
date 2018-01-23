@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Post from '../../../components/Post/Post';
 import './Posts.css';
-import {Link} from 'react-router-dom';
 
 // import Axios from 'axios';
 import Axios from '../../../Axios'; // from instance
@@ -11,10 +10,14 @@ class Posts extends Component {
         posts: []
     };
 
+    // postClickHandler = (id) => {
+    //     this.setState({
+    //         selectedPostId: id
+    //     });
+    // }
+
     postClickHandler = (id) => {
-        this.setState({
-            selectedPostId: id
-        });
+        this.props.history.push({pathname: '/' + id});
     }
 
     componentDidMount () {
@@ -42,13 +45,14 @@ class Posts extends Component {
             <p style={{textAlign: 'center'}}>Something went wrong!</p> :
             this.state.posts.map(post => {
                 return (
-                    <Link to={'/' + post.id} key={post.id}>
+                    // <Link to={'/' + post.id}>
                         <Post
+                            key={post.id}
                             title={post.title}
                             author={post.author}
                             clicked={() => this.postClickHandler(post.id)}
                         />
-                    </Link>
+                    // </Link>
                 );
             });
 
